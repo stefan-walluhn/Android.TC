@@ -1,8 +1,8 @@
-package de.walluhn.tc.android;
+package de.walluhn.tc.android.trail;
 
 import java.util.EventObject;
 
-import de.walluhn.tc.android.Trail;
+import de.walluhn.tc.android.trail.Trail;
 
 
 public class TrailEvent extends EventObject {

@@ -1,4 +1,4 @@
-package de.walluhn.tc.android.graphics;
+package de.walluhn.tc.android.particle;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -11,9 +11,10 @@ import android.graphics.drawable.shapes.RectShape;
 import android.graphics.drawable.shapes.Shape;
 import android.graphics.Path;
 
-import de.walluhn.tc.android.Particle;
-import de.walluhn.tc.android.Trail;
-import de.walluhn.tc.android.TrailSelector;
+import de.walluhn.tc.android.particle.Particle;
+import de.walluhn.tc.android.trail.Trail;
+import de.walluhn.tc.android.trail.TrailSelector;
+import de.walluhn.tc.proto.State;
 
 
 public class ParticleDrawable extends LayerDrawable {
@@ -95,7 +96,7 @@ class SelectTrailDrawable extends ShapeDrawable {
 
     public void draw(Canvas canvas) {
         for (Trail trail: particle.getTrails()) {
-            if (trail.getState() != Trail.TrailState.IDLE) {
+            if (trail.getState() != State.TrailState.IDLE) {
                 setShape(new PathShape(particle.getPath(trail), 8, 8));
                 getPaint().setColor(0xffff0000);
                 super.draw(canvas);
@@ -123,7 +124,7 @@ class PreselectTrailDrawable extends ShapeDrawable {
     public void draw(Canvas canvas) {
         Path merged_path = new Path();
         for (Trail trail: particle.getTrails()) {
-            if (trailSelector.selectedTrails().contains(trail)) {
+            if (trailSelector.selected(trail)) {
                 merged_path.addPath(particle.getPath(trail));
             }
         }

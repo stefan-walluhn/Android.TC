@@ -1,32 +1,35 @@
-package de.walluhn.tc.android.views;
+package de.walluhn.tc.android.particle;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
-import de.walluhn.tc.android.graphics.ParticleDrawable;
-import de.walluhn.tc.android.Particle;
-import de.walluhn.tc.android.Trail;
-import de.walluhn.tc.android.TrailEvent;
+import de.walluhn.tc.android.particle.Particle;
+import de.walluhn.tc.android.particle.ParticleDrawable;
+import de.walluhn.tc.android.trail.Trail;
+import de.walluhn.tc.android.trail.TrailEvent;
+import de.walluhn.tc.android.trail.TrailSelector;
 
 
 public class ParticleView extends View
         implements View.OnClickListener, Trail.TrailEventListener {
-    private ParticleDrawable particleDrawable;
     private Particle particle;
+    private ParticleDrawable particleDrawable;
+    private TrailSelector trailSelector;
 
     public ParticleView(
             Context context, AttributeSet attrs, Particle particle) {
         super(context, attrs);
-        setOnClickListener(this);
-
         this.particle = particle;
         particleDrawable = new ParticleDrawable(particle);
+        trailSelector = TrailSelector.getInstance();
+
+        setOnClickListener(this);
     }
 
     public void onClick(View v) {
-        particle.selectTrails();
+        trailSelector.selectTrails(particle.getTrails());
     }
 
     public void onTrailEvent(TrailEvent e) {

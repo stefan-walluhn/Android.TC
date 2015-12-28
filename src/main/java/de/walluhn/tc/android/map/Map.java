@@ -1,15 +1,16 @@
-package de.walluhn.tc.android;
+package de.walluhn.tc.android.map;
 
 import java.util.Arrays;
 
-import de.walluhn.tc.android.Particle;
-import de.walluhn.tc.android.views.ParticleView;
+import de.walluhn.tc.android.backend.DummyBackend;
+import de.walluhn.tc.android.particle.Particle;
+import de.walluhn.tc.android.particle.ParticleView;
 import de.walluhn.tc.android.path.Bend;
 import de.walluhn.tc.android.path.Straight;
-import de.walluhn.tc.android.path.Turnout;
+import de.walluhn.tc.android.trail.Trail;
 
 
-public class NetworkMap {
+public class Map {
     private Trail trail1 = new Trail();
     private Trail trail2 = new Trail();
     private Trail trail3 = new Trail();
@@ -18,6 +19,17 @@ public class NetworkMap {
     private Trail trail6 = new Trail();
     private Trail trail7 = new Trail();
     private Trail trail8 = new Trail();
+
+    public Map() {
+        trail1.setBackend(new DummyBackend(trail1));
+        trail2.setBackend(new DummyBackend(trail2));
+        trail3.setBackend(new DummyBackend(trail3));
+        trail4.setBackend(new DummyBackend(trail4));
+        trail5.setBackend(new DummyBackend(trail5));
+        trail6.setBackend(new DummyBackend(trail6));
+        trail7.setBackend(new DummyBackend(trail7));
+        trail8.setBackend(new DummyBackend(trail8));
+    }
 
     private Particle[][] particles = {
         {

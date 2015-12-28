@@ -1,4 +1,4 @@
-package de.walluhn.tc.android.views;
+package de.walluhn.tc.android.particle;
 
 import android.content.Context;
 import android.graphics.Path;
@@ -8,29 +8,29 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 
-import de.walluhn.tc.android.views.ParticleView;
-import de.walluhn.tc.android.Particle;
-import de.walluhn.tc.android.NetworkMap;
-import de.walluhn.tc.android.Trail;
+import de.walluhn.tc.android.map.Map;
+import de.walluhn.tc.android.trail.Trail;
+import de.walluhn.tc.android.particle.Particle;
+import de.walluhn.tc.android.particle.ParticleView;
 
 
 public class ParticleAdapter extends BaseAdapter {
     private GridView view;
     private AttributeSet attr;
-    private NetworkMap networkMap;
+    private Map map;
 
     public ParticleAdapter(GridView v, AttributeSet a) {
         view = v;
         attr = a;
-        networkMap = new NetworkMap();
+        map = new Map();
     }
 
     public int getCount() {
-        return networkMap.getCount();
+        return map.getCount();
     }
 
     public int getColumns() {
-        return networkMap.getColumns();
+        return map.getColumns();
     }
 
     public Object getItem(int position) {
@@ -56,7 +56,7 @@ public class ParticleAdapter extends BaseAdapter {
 
     private View getParticleView(int position) {
         return ParticleViewFactory.getView(
-                view.getContext(), attr, networkMap.getParticle(position));
+                view.getContext(), attr, map.getParticle(position));
     }
 }
 
